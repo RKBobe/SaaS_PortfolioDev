@@ -1,0 +1,17 @@
+{
+  "name": "SaaS Portfolio Dev Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  
+  "remoteUser": "root",
+  "postCreateCommand": "./.devcontainer/init-postgres.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+      background: #f8f9fa;
+    }
+    .sidebar {
+      flex: 0 0 250px;
+    }
+    .card {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .card:hover {
+      background: #eef;
+    }
+    #content {
+      flex: 1;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      max-width: 800px;
+      overflow-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="card" data-file="projects/rad/overview.md">Requirements Analysis</div>
+    <div class="card" data-file="projects/design/overview.md">UI Design</div>
+    <div class="card" data-file="projects/scripts/overview.md">Utility Scripts</div>
+    <div class="card" data-file="projects/uml/overview.md">UML Diagrams</div>
+    <div class="card" data-file="projects/db-config/overview.md">PostgreSQL Config</div>
+  </div>
+
+  <div id="content">
+    <em>Select a card to view its details...</em>
+  </div>
+
+  <script>
+    async function loadMarkdown(filePath) {
+      try {
+        const res = await fetch(filePath);
+        if (!res.ok) throw new Error(`Could not load ${filePath}`);
+        const markdown = await res.text();
+        const html = marked.parse(markdown);
+        document.getElementById('content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('content').innerHTML = `<p>Error loading file: ${err.message}</p>`;
+      }
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const filePath = card.getAttribute('data-file');
+        loadMarkdown(filePath);
+      });
+    });
+  </script>
+
+</body>
+</html>

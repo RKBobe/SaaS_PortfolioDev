@@ -1,0 +1,9 @@
+{
+  "server": {
+    "baseDir": ["./", "./public"],
+    "routes": {
+      "/node_modules": "node_modules"
+    }
+  },
+  "files": ["index.html", "style.css", "public/css/*.css", "public/js/*.js"]
+}
