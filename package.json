@@ -2,7 +2,8 @@
   "name": "saas-portfolio-dev",
   "version": "1.0.0",
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "build-index": "node generate-index.js" 
   },
   "devDependencies": {
     "lite-server": "^2.6.1"

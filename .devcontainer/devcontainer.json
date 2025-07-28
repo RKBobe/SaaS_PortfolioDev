@@ -3,15 +3,18 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  
   "remoteUser": "root",
-  "postCreateCommand": "./.devcontainer/init-postgres.sh",
+  "postCreateCommand": "npm install && npm run build-index && ./.devcontainer/init-postgres.sh",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.vscode-typescript-next",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag"
       ]
     }
-  }
+  },
+  "features": {},
+  "postStartCommand": "npm run watch-index"
 }

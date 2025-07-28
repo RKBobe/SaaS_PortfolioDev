@@ -1,35 +1,107 @@
+:root {
+  --bg-light: #f8f9fa;
+  --card-bg: #fff;
+  --hover-bg: #eef;
+  --text-color: #333;
+  --accent: #007bff;
+  --danger: #d9534f;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.1);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
-  margin: 2rem;
-  background: #f4f4f9;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  background: var(--bg-light);
+  color: var(--text-color);
 }
 
-.project-card {
-  background: white;
-  border: 1px solid #ddd;
+.sidebar {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card-bg);
   padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
 }
 
-.project-card h2 {
-  margin-top: 0;
+.card:hover {
+  background: var(--hover-bg);
+  box-shadow: var(--shadow-lg);
 }
 
-.toggle-btn {
-  background: #007acc;
+.card.dimmed {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+#content {
+  flex: 1;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  max-width: 800px;
+  overflow-wrap: break-word;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+#content.hidden {
+  display: none;
+}
+
+#reset-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  background: var(--danger);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
   cursor: pointer;
-  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
-.project-details {
-  margin-top: 0.75rem;
-  background-color: #f9f9f9;
-  padding: 0.75rem;
-  border-left: 4px solid #007acc;
+#reset-btn:hover {
+  background: #c9302c;
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card {
+    flex: 1 1 45%;
+    margin: 0;
+  }
+
+  #content {
+    padding: 1.5rem;
+  }
 }
